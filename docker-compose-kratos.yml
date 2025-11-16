@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+      
+  kratos:
+    image: oryd/kratos
+    container_name: kratos
+    ports:
+      - "4433:4433"  # Public API
+      - "4434:4434"  # Admin API
+    volumes:
+      - ./kratos:/etc/config/kratos
+      - ./kratos/templates:/etc/config/kratos/templates
+    command: serve -c /etc/config/kratos/kratos.yml
+
+
+networks:
+  bigarson:
+    external: true
